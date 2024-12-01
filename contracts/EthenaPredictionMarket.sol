@@ -117,9 +117,22 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
         emit SharesPurchased(_marketId, msg.sender, _isOptionA, _amount);
     } 
 
+    function resolveMarket(uint256 _marketId, MarketOutcome _outcome) external {
+        require(msg.sender == owner(), "Only owner can resolve markets");
+        Market storage market = markets[_marketId];
+        require(block.timestamp >= market.endTime, "Market hasn't ended yet");
+        require(!market.resolved, "Market already resolved");
+        require(_outcome != MarketOutcome.UNRESOLVED, "Invalid outcome");
+
+        market.outcome = _outcome;
+        market.resolved = true;
+
+        emit MarketResolved(_marketId, _outcome);
+    }
 
 
 
-    
-       
+
+
+
 }
