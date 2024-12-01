@@ -57,6 +57,11 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
         _setupOwner(msg.sender);
     }
 
-    function createMarket()
+    function createMarket(
+        string memory _question,
+        string memory _optionA,
+        string memory _optionB,
+        uint256 _duration
+    )
 
 }
