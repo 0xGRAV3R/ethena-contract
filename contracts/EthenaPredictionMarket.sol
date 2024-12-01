@@ -13,6 +13,8 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
     }
 
     struct Market {
-        
+        string question;
+        uint256 endTime;
+        MarketOutcome outcome;
     }
 }
