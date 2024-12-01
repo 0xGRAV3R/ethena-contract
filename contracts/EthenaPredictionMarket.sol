@@ -113,4 +113,13 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
             market.optionBSharesBalance[msg.sender] += _amount;
             market.totalOptionBShares += _amount;
         }
+
+        emit SharesPurchased(_marketId, msg.sender, _isOptionA, _amount);
+    } 
+
+
+
+
+    
+       
 }
