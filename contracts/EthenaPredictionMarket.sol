@@ -70,4 +70,7 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
             "Options cannot be empty"
         );
 
+        uint256 marketId = marketCount++;
+        Market storage market = markets[marketId];
+
 }
