@@ -87,4 +87,10 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
             market.endTime
         );
         return marketId;
+
+    function buyShares(
+        uint256 _marketId,
+        bool _isOptionA,
+        uint256 _amount
+    )
 }
