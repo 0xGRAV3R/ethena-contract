@@ -32,15 +32,16 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
     mapping(uint256 => Market) public markets;
 
     event MarketCreated(
-        uint256 indexed marketId;
-        string question;
-        string optionA;
-        string optionB;
-        uint256 endTime;
+        uint256 indexed marketId,
+        string question,
+        string optionA,
+        string optionB,
+        uint256 endTime
     )
 
     event SharesPurchased(
-        
+        uint256 indexed merketId,
+
     )
 
     constructor() {}
