@@ -56,4 +56,7 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
         bettingToken = IERC20(_bettingToken);
         _setupOwner(msg.sender);
     }
+
+    function createMarket()
+
 }
