@@ -130,6 +130,44 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
         emit MarketResolved(_marketId, _outcome);
     }
 
+    function claimWinnings(uint256 _marketId) external {
+        Market storage market = markets[_marketId];
+        require(market.resolved, "Market not resolved yet");
+
+        uint256 userShares;
+        uint256 winningShares;
+        uint256 losingShares;
+
+        if (market.outcome == MarketOutcome.OPTION_A) {
+            userShares = market.optionASharesBalance[msg.sender];
+            winningShares = market.totalOptionAShares;
+            losingShares = market.totalOptionBShares;
+            market.optionASharesBalance[msg.sender] = 0;
+        } else if (market.outcome == MarketOutcome.OPTION_B) {
+            userShares = market.optionBSharesBalance[msg.sender];
+            winningShares = market.totalOptionBShares;
+            losingShares = market.totalOptionAShares;
+            market.optionBSharesBalance[msg.sender] = 0;
+        } else {
+            revert("Market outcome is not valid");
+        }
+
+        require(userShares > 0, "No winnings to claim");
+
+        // Calculate the reward ratio
+        uint256 rewardRatio = (losingShares * 1e18) / winningShares; // Using 1e18 for precision
+
+        // Calculate winnings: original stake + proportional share of losing funds
+        uint256 winnings = userShares + (userShares * rewardRatio) / 1e18;
+
+        require(
+            bettingToken.transfer(msg.sender, winnings),
+            "Token transfer failed"
+        );
+
+        emit Claimed(_marketId, msg.sender, winnings);
+    }
+
 
 
 
