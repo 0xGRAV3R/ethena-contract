@@ -37,22 +37,23 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
         string optionA,
         string optionB,
         uint256 endTime
-    )
+    );
 
     event SharesPurchased(
         uint256 indexed merketId,
         address indexed buyer,
         bool isOptionA,
         uint256 amount
-    )
+    );
 
     event Claimed(
         uint256 indexed marketId
         address indexed user,
         uint256 amount
-    )
+    );
 
     constructor(address _bettingToken) {
         bettingToken = IERC20(_bettingToken);
+        
     }
 }
