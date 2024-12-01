@@ -62,6 +62,12 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
         string memory _optionA,
         string memory _optionB,
         uint256 _duration
-    )
+    ) external returns (uint256) {
+        require(msg.sender == owner(), "Only owner can create markets");
+        require(_duration > 0, "Duration must be positive");
+        require(
+            bytes(_optionA).length > 0 && bytes(_optionB).length > 0,
+            "Options cannot be empty"
+        );
 
 }
