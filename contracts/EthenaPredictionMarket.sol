@@ -16,5 +16,7 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
         string question;
         uint256 endTime;
         MarketOutcome outcome;
+        string optionA;
+        string optionB;
     }
 }
