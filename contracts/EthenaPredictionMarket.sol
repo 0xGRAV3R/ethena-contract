@@ -31,6 +31,10 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
     uint256 public marketCount;
     mapping(uint256 => Market) public markets;
 
+    event MarketCreated(
+        
+    )
+
     constructor() {}
 
 
