@@ -168,7 +168,34 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
         emit Claimed(_marketId, msg.sender, winnings);
     }
 
-
+    function getMarketInfo(
+        uint256 _marketId
+    )
+        external
+        view
+        returns (
+            string memory question,
+            string memory optionA,
+            string memory optionB,
+            uint256 endTime,
+            MarketOutcome outcome,
+            uint256 totalOptionAShares,
+            uint256 totalOptionBShares,
+            bool resolved
+        )
+    {
+        Market storage market = markets[_marketId];
+        return (
+            market.question,
+            market.optionA,
+            market.optionB,
+            market.endTime,
+            market.outcome,
+            market.totalOptionAShares,
+            market.totalOptionBShares,
+            market.resolved
+        );
+    }
 
 
 
