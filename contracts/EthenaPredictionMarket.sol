@@ -41,7 +41,9 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
 
     event SharesPurchased(
         uint256 indexed merketId,
-
+        address indexed buyer,
+        bool isOptionA,
+        uint256 amount
     )
 
     constructor() {}
