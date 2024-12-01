@@ -92,5 +92,10 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
         uint256 _marketId,
         bool _isOptionA,
         uint256 _amount
-    )
+    ) external {
+        Market storage market = markets[_marketId];
+        require(
+            block.timestamp < market.endTime,
+            "Market trading period has ended"
+        );
 }
