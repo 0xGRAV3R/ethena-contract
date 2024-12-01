@@ -197,7 +197,16 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
         );
     }
 
-
+    function getSharesBalance(
+        uint256 _marketId,
+        address _user
+    ) external view returns (uint256 optionAShares, uint256 optionBShares) {
+        Market storage market = markets[_marketId];
+        return (
+            market.optionASharesBalance[_user],
+            market.optionBSharesBalance[_user]
+        );
+    }
 
 
 }
