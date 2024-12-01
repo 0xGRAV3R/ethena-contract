@@ -105,4 +105,12 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
             bettingToken.transferFrom(msg.sender, address(this), _amount),
             "Token transfer failed"
         );
+
+        if (_isOptionA) {
+            market.optionASharesBalance[msg.sender] += _amount;
+            market.totalOptionAShares += _amount;
+        } else {
+            market.optionBSharesBalance[msg.sender] += _amount;
+            market.totalOptionBShares += _amount;
+        }
 }
