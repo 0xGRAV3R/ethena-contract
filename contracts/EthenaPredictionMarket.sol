@@ -29,7 +29,7 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
 
     IERC20 public bettingToken;
     uint256 public marketCount;
-    
+    mapping(uint256 => Market) public markets;
 
     constructor() {}
 
