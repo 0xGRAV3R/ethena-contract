@@ -11,4 +11,8 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
         OPTIONS_A,
         OPTION_B
     }
+
+    struct Market {
+        
+    }
 }
