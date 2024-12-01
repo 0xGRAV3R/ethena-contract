@@ -98,4 +98,6 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
             block.timestamp < market.endTime,
             "Market trading period has ended"
         );
+        require(!market.resolved, "Market already resolved");
+        require(_amount > 0, "Amount must be positive");
 }
