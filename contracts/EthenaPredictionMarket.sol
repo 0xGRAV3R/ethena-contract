@@ -6,5 +6,9 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
-    constructor() {}
+    enum MarketOutcome {
+        UNRESOLVED,
+        OPTIONS_A,
+        OPTION_B
+    }
 }
