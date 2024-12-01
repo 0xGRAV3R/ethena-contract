@@ -73,4 +73,9 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
         uint256 marketId = marketCount++;
         Market storage market = markets[marketId];
 
+        market.question = _question;
+        market.optionA = _optionA;
+        market.optionB = _optionB;
+        market.endTime = block.timestamp + _duration;
+        market.outcome = MarketOutcome.UNRESOLVED;
 }
