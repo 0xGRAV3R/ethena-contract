@@ -24,6 +24,6 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
         mapping(address => unit256) optionASharesBalance;
         mapping(address => unit256) optionBSharesBalance;
 
-        
+        mapping(address => bool) hasClaimed;
     }
 }
