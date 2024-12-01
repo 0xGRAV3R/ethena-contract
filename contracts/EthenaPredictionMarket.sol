@@ -47,7 +47,9 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
     )
 
     event Claimed(
-        
+        uint256 indexed marketId
+        address indexed user,
+        uint256 amount
     )
 
     constructor() {}
