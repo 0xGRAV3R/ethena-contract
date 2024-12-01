@@ -100,4 +100,9 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
         );
         require(!market.resolved, "Market already resolved");
         require(_amount > 0, "Amount must be positive");
+
+        require(
+            bettingToken.transferFrom(msg.sender, address(this), _amount),
+            "Token transfer failed"
+        );
 }
