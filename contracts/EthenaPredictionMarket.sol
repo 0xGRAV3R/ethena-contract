@@ -208,5 +208,61 @@ contract EthenaPredictionMarket is Ownable, ReentrancyGuard {
         );
     }
 
+    function batchClaimWinnings(
+        uint256 _marketId,
+        address[] calldata _users
+    ) external nonReentrant {
+        Market storage market = markets[_marketId];
+        require(market.resolved, "Market not resolved yet");
+
+        for (uint256 i = 0; i < _users.length; i++) {
+            address user = _users[i];
+
+            // Skip if the user already claimed
+            if (market.hasClaimed[user]) {
+                continue;
+            }
+
+            uint256 userShares;
+            uint256 winningShares;
+            uint256 losingShares;
+
+            // Determine user shares and winning/losing shares based on the outcome
+            if (market.outcome == MarketOutcome.OPTION_A) {
+                userShares = market.optionASharesBalance[user];
+                winningShares = market.totalOptionAShares;
+                losingShares = market.totalOptionBShares;
+                market.optionASharesBalance[user] = 0; //Reset user shares after claim
+            } else if (market.outcome == MarketOutcome.OPTION_B) {
+                userShares = market.optionBSharesBalance[user];
+                winningShares = market.totalOptionBShares;
+                losingShares = market.totalOptionAShares;
+                market.optionBSharesBalance[user] = 0; // Reset user's shares after claim
+            } else {
+                revert("Market outcome is not valid");
+            }
+
+            // We need to ensure the user has winnings to claim
+            if (userShares == 0) {
+                continue;
+            }
+
+            // Calculate the reward ratio and user's winnings
+            uint256 rewardRatio = (losingShares * 1e18) / winningShares;
+            uint256 winnings = userShares + (userShares * rewardRatio) / 1e18;
+
+            // Mark the user as having claimed winnings
+            market.hasClaimed[user] = true;
+
+            // Transfer winnings to the user
+            require(
+                bettingToken.transfer(user, winnings),
+                "Token transfer failed"
+            );
+
+            // emit and event for each user who claimed winnings
+            emit Claimed(_marketId, user, winnings);
+        }
+    }
 
 }
