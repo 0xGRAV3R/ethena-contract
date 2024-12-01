@@ -46,11 +46,13 @@ contract EthenaPredictionMarket is ERC20, wnable, ReentrancyGuard {
         uint256 amount
     );
 
+    /// @notice Emitted when winnings are claimed by a user.
     event Claimed(
-        uint256 indexed marketId
+        uint256 indexed marketId,
         address indexed user,
         uint256 amount
     );
+
 
     constructor(address _bettingToken) {
         bettingToken = IERC20(_bettingToken);
@@ -264,5 +266,4 @@ contract EthenaPredictionMarket is ERC20, wnable, ReentrancyGuard {
             emit Claimed(_marketId, user, winnings);
         }
     }
-
 }
