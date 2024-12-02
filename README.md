@@ -10,6 +10,56 @@ https://testnet.explorer.ethena.fi/address/0x9aa08D9081221fAC06916164F5A31A225D7
 Here's the link for the frontend:<br /> 
 https://github.com/0xGRAV3R/ethena-prediction-market <br />
 
+## Features
+- Create prediction markets with a question and two possible outcomes.
+- Users can buy shares for either of the outcomes.
+- Market resolution determines the winning outcome.
+- Users can claim their winnings proportional to their shares if they bet on the correct outcome.
+- Batch claim functionality for multiple users to claim winnings.
+
+### Prediction Market
+
+- Users can bet on the outcome of a question (e.g., *"Will the Lakers win tonight?"*).
+- Each question has two options (e.g., *Option A* and *Option B*) for users to choose from.
+
+### Shares
+
+- **Shares** represent a user's stake in the outcome.
+    - By purchasing shares in **Option A**, the user is betting on that outcome.
+    - The total number of shares for each option increases as more users place their bets.
+  
+### Market Resolution
+
+- The market "closes" after a predefined time (`endTime`).
+- At this point, the **owner** (typically the creator of the contract) resolves the market and marks the correct outcome.
+    - For example, if the Lakers win, the owner can mark **Option A** as the correct answer.
+
+### Winnings
+
+- Users who place their bets on the correct option (e.g., betting on **Option A** if **Option A** wins) are eligible to claim their winnings.
+- Winnings are calculated based on the user's shares and the total number of shares purchased by others.
+
+## Main Functions
+
+### `createMarket`
+- The owner of the contract can create a new market by providing:
+  - A **question** to be predicted (e.g., *"Will the Lakers win tonight?"*).
+  - Two **options** for users to bet on (e.g., *Option A* and *Option B*).
+
+### `buyShares`
+- Users can purchase shares in either **Option A** or **Option B** to place their bets on the outcome.
+
+### `resolveMarket`
+- The owner resolves the market once the set time (`endTime`) has passed.
+- The owner chooses the winning option (e.g., marking **Option A** as the winner).
+
+### `claimWinnings`
+- Users can claim their winnings based on their shares and the winning option after the market has been resolved.
+
+### `batchClaimWinnings`
+- The owner can batch claim winnings for multiple users at once, simplifying the process of distributing rewards.
+
+
 ## Getting Started
 ```shell
 git clone 
