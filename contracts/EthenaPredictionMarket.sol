@@ -5,7 +5,7 @@ import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
-contract EthenaPredictionMarket is ERC20, wnable, ReentrancyGuard {
+contract EthenaPredictionMarket is ERC20, Ownable, ReentrancyGuard {
     enum MarketOutcome {
         UNRESOLVED,
         OPTIONS_A,
@@ -89,6 +89,7 @@ contract EthenaPredictionMarket is ERC20, wnable, ReentrancyGuard {
             market.endTime
         );
         return marketId;
+    }    
 
     function buyShares(
         uint256 _marketId,
