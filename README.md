@@ -10,6 +10,9 @@ https://testnet.explorer.ethena.fi/address/0x9aa08D9081221fAC06916164F5A31A225D7
 Here's the link for the frontend:<br /> 
 https://github.com/0xGRAV3R/ethena-prediction-market <br />
 
+Demo video:<br />
+https://www.youtube.com/watch?v=8_-LEn8qbYA<br />
+
 ## Features
 - Create prediction markets with a question and two possible outcomes.
 - Users can buy shares for either of the outcomes.
