@@ -21,8 +21,8 @@ contract EthenaPredictionMarket is ERC20, Ownable, ReentrancyGuard {
         uint256 totalOptionAShares;
         uint256 totalOptionBShares;
         bool resolved;
-        mapping(address => unit256) optionASharesBalance;
-        mapping(address => unit256) optionBSharesBalance;
+        mapping(address => uint256) optionASharesBalance;
+        mapping(address => uint256) optionBSharesBalance;
 
         mapping(address => bool) hasClaimed;
     }
@@ -46,6 +46,9 @@ contract EthenaPredictionMarket is ERC20, Ownable, ReentrancyGuard {
         uint256 amount
     );
 
+    /// @notice Emitted when a market is resolved with an outcome.
+    event MarketResolved(uint256 indexed marketId, MarketOutcome outcome);
+
     /// @notice Emitted when winnings are claimed by a user.
     event Claimed(
         uint256 indexed marketId,
@@ -56,7 +59,7 @@ contract EthenaPredictionMarket is ERC20, Ownable, ReentrancyGuard {
 
     constructor(address _bettingToken) {
         bettingToken = IERC20(_bettingToken);
-        _setupOwner(msg.sender);
+        _setupOwner(msg.sender); 
     }
 
     function createMarket(
@@ -118,6 +121,7 @@ contract EthenaPredictionMarket is ERC20, Ownable, ReentrancyGuard {
         }
 
         emit SharesPurchased(_marketId, msg.sender, _isOptionA, _amount);
+        
     } 
 
     function resolveMarket(uint256 _marketId, MarketOutcome _outcome) external {
