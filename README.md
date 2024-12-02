@@ -1,6 +1,8 @@
 # Ethena Prediction Market Contract
 The Ethena Prediction Market Contract is a decentralized smart contract platform designed for creating and managing prediction markets on the Ethereum blockchain. It facilitates transparent, trustless, and efficient mechanisms for users to forecast outcomes and place wagers on various events.
 
+Here's the link for the frontend: https://github.com/0xGRAV3R/ethena-prediction-market
+
 ## Getting Started
 ```shell
 git clone 
