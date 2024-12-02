@@ -13,6 +13,8 @@ https://github.com/0xGRAV3R/ethena-prediction-market <br />
 Demo video:<br />
 https://www.youtube.com/watch?v=8_-LEn8qbYA<br />
 
+<img width="1512" alt="Screenshot 2024-12-01 at 11 59 00 PM" src="https://github.com/user-attachments/assets/6b883e6d-0eb2-4fd9-acbf-c1166746275e">
+
 ## Features
 - Create prediction markets with a question and two possible outcomes.
 - Users can buy shares for either of the outcomes.
